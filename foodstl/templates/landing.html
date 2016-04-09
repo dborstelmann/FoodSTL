@@ -4,6 +4,7 @@
 <script type="text/javascript" src="../static/js/backbone-min.js"></script>
 <script type="text/javascript" src="../static/js/materialize.min.js"></script>
 <link type="text/css" rel="stylesheet" href="../static/css/materialize.min.css">
+<link type="text/css" rel="stylesheet" href="../static/css/animate.css">
 <link type="text/css" rel="stylesheet/less" href="../static/less/landing.less"/>
 <script src="../static/js/less.min.js" type="text/javascript"></script>
 
@@ -46,12 +47,16 @@
             }
         },
 
-        render: function(){
-            var template = _.template($('#landing-template').text());
-            $('body').css({'background-image': 'url(' + this.landingImage.src + ')'});
-            this.$el.html(template());
+        render: function (){
+            var _this = this;
 
-            $('.container').css({height: $(window).height()});
+            var template = _.template($('#landing-template').text());
+            _this.$el.empty().append(template());
+
+            _this.$el.find('.container').css({height: $(window).height()});
+            $('body').css({'background-image': 'url(' + _this.landingImage.src + ')'});
+
+            return _this;
         },
 
         events: {
