@@ -9,7 +9,7 @@
 
 <title>FoodSTL</title>
 
-<body>
+<script id="landing-template" type="text/template">
     <div class="container">
         <div class="valign-wrapper">
             <div class="valign">
@@ -22,10 +22,45 @@
             </div>
         </div>
     </div>
+</script>
+
+<body>
+    <div id="landing">
+
+    </div>
 </body>
 
 <script>
-    $('.container').css({height: $(window).height()});
+
+    var LandingView = Backbone.View.extend({
+        el: '#landing',
+
+        initialize: function(){
+            var _this = this;
+
+            _this.landingImage = new Image();
+            _this.landingImage.src = window.location.origin + '/static/img/landing_2.jpg';
+
+            _this.landingImage.onload = function () {
+                _this.render();
+            }
+        },
+
+        render: function(){
+            var template = _.template($('#landing-template').text());
+            $('body').css({'background-image': 'url(' + this.landingImage.src + ')'});
+            this.$el.html(template());
+
+            $('.container').css({height: $(window).height()});
+        },
+
+        events: {
+
+        }
+    });
+
+    var landingView = new LandingView()
+
 </script>
 
 <html>
