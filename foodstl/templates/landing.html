@@ -5,8 +5,10 @@
 <script type="text/javascript" src="../static/js/materialize.min.js"></script>
 <link type="text/css" rel="stylesheet" href="../static/css/materialize.min.css">
 <link type="text/css" rel="stylesheet" href="../static/css/animate.css">
+<link type="text/css" rel="stylesheet/less" href="../static/less/main.less"/>
 <link type="text/css" rel="stylesheet/less" href="../static/less/landing.less"/>
 <script src="../static/js/less.min.js" type="text/javascript"></script>
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
 
 <title>FoodSTL</title>
 
@@ -14,18 +16,25 @@
     <div class="container">
         <div class="valign-wrapper">
             <div class="valign">
-                <div class="title">
+                <!-- <div class="title">
                     FoodSTL
-                </div>
-                <div class="coming-soon">
-                    Coming Soon
-                </div>
+                </div> -->
+                <img class="title" src="/static/logos/logo_color_2x.png" width="300px">
             </div>
         </div>
     </div>
 </script>
 
 <body>
+    <div class="fixed">
+        <div class="valign-wrapper">
+            <div class="valign center" style="width: 100%;">
+                <div class="coming-soon">
+                    Coming Soon
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="landing">
 
     </div>
@@ -39,12 +48,20 @@
         initialize: function(){
             var _this = this;
 
+            $('.fixed').css({height: $(window).height()});
+
             _this.landingImage = new Image();
             _this.landingImage.src = window.location.origin + '/static/img/landing_2.jpg';
 
             _this.landingImage.onload = function () {
                 _this.render();
             }
+
+            $(window).resize(function() {
+                $('.fixed').css({height: $(window).height()});
+                _this.$el.find('.container').css({height: $(window).height()});
+            });
+
         },
 
         render: function (){
